@@ -1,0 +1,19 @@
+/*hides text that shows time*/
+#showtime {
+	display:none;
+}
+
+/*enables ul to be scrollable*/
+#citylogs, .citylogs {
+	overflow: scrolling;
+	-webkit-overflow-scrolling: touch;
+}
+
+/*hide li items where logs will be append */
+#logitem, .logitem{
+	display: none;
+}
+/*set size of logs */
+.text {
+	font-size: .7em;
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CityLogs</title>
+		<meta charset="UTF-8"> 
+	<!-- Include meta tag to ensure proper rendering and touch zooming -->
+	<meta http-equiv="Content-Security-Policy"
+		content="default-src 'self' http://10.0.0.72:3009 https://10.0.0.72:3009;
+		style-src 'self' 'unsafe-inline'; img-src * data:;
+		script-src 'self' 'unsafe-inline' 'unsafe-eval'; media-src *"/> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Include jQuery Mobile stylesheets -->
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.css">
+	<link rel="stylesheet" href="CityLogs.css" />  
+
+	<!-- Include the jQuery library -->
+	<script src="jquery.js"></script>
+	<script src="CityLogs.js"></script>
+
+<script language="javascript" src="crossdomain-ajax.js"></script>
+
+
+<script language="javascript" type="text/javascript">
+  var jquery_path = "http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js";
+
+</script>
+	<!-- Include the jQuery Mobile library -->
+	<script src="jquery.mobile-1.4.5.js"></script>
+	</head>
+	
+	<body>
+		<!--====================== Home Page========================== -->
+
+		<div data-role="page" id="home">
+			<div data-role="header">
+				<h1>City Logs</h1>
+			</div>
+
+			<div data-role="content">
+				<ul data-role="listview">
+					<li><a href="#" data-role="button" id="1" onclick="getID(this)">Perth</a></li>
+					<li><a href="#" data-role="button" id="2" onclick="getID(this)">Brisbane</a></li>
+					<li><a href="#" data-role="button" id="3" onclick="getID(this)">Sydney</a></li>
+					<li><a href="#" data-role="button" id="4" onclick="getID(this)">Melbourne</a></li>
+					<li><a href="#" data-role="button" id="5" onclick="getID(this)">Adelaide</a></li>
+				</ul>
+			</div>
+
+			<div data-role="footer" data-position="fixed">
+				<h1>CQUniversity, P. Garcia. 2018</h1>
+			</div>
+		</div> 
+		
+		
+		<!--====================== City page================================= -->
+		
+		<div data-role="page" id="citypage">
+			
+			<div data-role="header">
+				<h1>Perth</h1>
+				<a href="#" data-role="button" onclick="clearPage()">Clear</a>
+				<a href="#" data-role="button" id="showlogs" onclick="showCityLogs()">Show logs</a>
+			</div>
+			
+			<div data-role="content">
+				<a data-role="button" id="time">Time</a>
+				<p id="showtime">Time</p>
+					<div data-role="fieldcontain">
+						<label for="contact">Conctact:</label>
+						<input type="text" id="contact" placeholder="Enter your contact details">
+					</div>
+					<div data-role="fieldcontain">
+						<label for="invoice">Invoice #:</label>
+						<input type="number" id="invoice" placeholder="012345678">
+					</div>
+					<div data-role="fieldcontain">
+						<label for="destination">Destination:</label>
+						<select id="select">
+							<option></option>
+							<option>Brisbane</option>
+							<option>Sydney</option>
+							<option>Melbourne</option>
+							<option>Adelaide</option>
+						</select>
+					</div>
+			
+				<a href="#" data-role="button" id="savelogs">Save log entry</a>
+			</div>
+			
+			<div data-role="footer" data-position="fixed">
+				<a href="#" data-role="button" data-icon="arrow-r" onclick="next()">Next</a>
+				<a href="#" data-role="button" data-icon="arrow-l" onclick="previous()">Previous</a>
+				<a href="#home" data-role="button" data-icon="home">Home</a>
+			</div>
+		</div>
+		
+				<!--====================== City Log page================================= -->
+		
+		<div data-role="page" id="showlogs">
+			
+			<div data-role="header" >
+				<h1 id="title">Title</h1>
+				<a href="#" data-role="button" id="getlogs" onclick="getLogs()">Get..</a>
+				<a href="#sendpage" data-role="button" id="sendlogs">Send</a>
+				
+			</div>
+			
+			<div data-role="content">
+				<h1>Current log entries:</h1>
+				<p>Time, location, contact, invoice, destination</p>
+				<ul id="citylogs" class="citylogs"  data-role="listview">
+				</ul>
+			<div id="logcontainer">
+				<li id="logitem" class="logitem" >
+					<span class="text"></span>
+				</li>	
+			</div>
+			</div>
+			
+			<div data-role="footer" data-position="fixed">
+				<a href="#" data-role="button" data-rel="back">Back</a>
+			</div>
+		</div>
+		
+		<!--====================== Cloud City Log page ================================= -->
+		
+		<div data-role="page" id="cloudlogs">
+			
+			<div data-role="header" >
+				<h1 id="title" class="title">Title</h1>
+				<a href="#" data-role="button" data-rel="back">Back</a>
+				<a href="#home" data-role="button">Home</a>
+				
+			</div>
+			
+			<div data-role="content">
+				<h1>Current Cloud log entries:</h1>
+				<p>Time, location, contact, invoice, destination</p>
+				<ul id="cityCloudlogs"  class="citylogs" data-role="listview">
+				</ul>
+			<div id="cloudLogcontainer">
+				<li id="cloudlogitem" class="logitem">
+					<span class="text"></span>
+				</li>	
+			</div>
+			</div>
+			
+			<div data-role="footer" data-position="fixed">
+				<a href="#" data-role="button" data-rel="back">Back</a>
+			</div>
+		</div>
+		
+		
+		<!--====================== Dialog Page ================================= -->
+		<div data-role="page" data-dialog="true" id="sendpage">
+			<div data-role="header">
+				<h1>Send logs?</h1>
+			</div>
+			<div data-role="content">
+				<p>Do you want to send logs to server?</p>
+				<a herf="#" data-role="button" data-rel="back">No</a>
+				<a herf="#" data-role="button" onclick="deleteAndSaveLogs()" data-rel="back">Yes</a>
+				
+			</div>
+		</div>
+	</body>
+</html>
