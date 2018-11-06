@@ -4,7 +4,7 @@ document.ontouchmove = function(e){
 } 
 
 //global variables
-var server = '10.0.0.72:3009'
+var server = ''// add server path and port
 var cities = ["Home","Perth","Brisbane","Sydney","Melbourne","Adelaide"];
 var userlocation = "0";
 var city = 1;

@@ -11,7 +11,7 @@ var crossdomain = (function () {
     // external document loading this script, or load the script from
     // a <script src="... tag
     //
-    var CROSSDOMAINJS_PATH = "10.0.0.7:3009"
+    var CROSSDOMAINJS_PATH = ""// add server path
     try {
 	var CROSSDOMAINJS_PATH = CROSSDOMAINJS_PATH;
     } catch(e) {
