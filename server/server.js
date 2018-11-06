@@ -115,6 +115,7 @@ mongo.init(
     app.use(bodyParser.json())
     //app.use(multer({dest: './images/'}), middle() )
 
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -133,6 +134,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+
 
     app.get(  prefix+'search/:query', search)
     app.post(  prefix+':city_name/log', send_data)
